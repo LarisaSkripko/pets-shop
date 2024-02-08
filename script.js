@@ -84,3 +84,34 @@ const items = [
     img: "./img/12.jpeg",
   },
 ];
+
+const itemsContainer = document.querySelector('#shop-items');
+const itemTemplate = document.querySelector('#item-template');
+
+function makeShopCard(shopItem) {
+  const { title, description, tags, price, img } = shopItem;
+  const item = itemTemplate.content.cloneNode(true);
+
+  item.querySelector('h1').textContent = title;
+  item.querySelector('p').textContent = description;
+  item.querySelector('img').src = img;
+  item.querySelector('.price').textContent = price;
+
+  const tagsHolder = item.querySelector(".tags");
+
+  tags.forEach((tag)=> {
+    const element = document.createElement("span");
+    element.textContent = tag;
+    element.classList.add("tag");
+    tagsHolder.append(element);
+  })
+
+  return item;
+}
+
+items.forEach(item => {
+  const card = makeShopCard(item);
+  itemsContainer.append(card);
+});
+
+
