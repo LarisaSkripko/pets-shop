@@ -96,7 +96,15 @@ function makeShopCard(shopItem) {
   item.querySelector('p').textContent = description;
   item.querySelector('img').src = img;
   item.querySelector('.price').textContent = price;
-  item.querySelector('.tags').textContent = tags.join(', ');
+
+  const tagsHolder = item.querySelector(".tags");
+
+  tags.forEach((tag)=> {
+    const element = document.createElement("span");
+    element.textContent = tag;
+    element.classList.add("tag");
+    tagsHolder.append(element);
+  })
 
   return item;
 }
